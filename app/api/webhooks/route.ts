@@ -54,19 +54,19 @@ export async function POST(req: Request) {
   // For this guide, you simply log the payload to the console
   const { id } = evt.data;
   const eventType = evt.type;
-  if(eventType === "user.created") {
-    const { id, email_addresses } = evt.data
+  if (eventType === "user.created") {
+    const { id, email_addresses } = evt.data;
     const newUser = {
-        clerkUserId: id,
-        emailAddress: email_addresses
-    }
-    console.log(newUser)
+      clerkUserId: id.toString(),
+      emailAddress: email_addresses.toString(),
+    };
+    console.log(newUser);
     try {
-        await connectToDb()
-        await User.create(newUser)
-        console.log("User Done")
+      await connectToDb();
+      await User.create(newUser);
+      console.log("User Done");
     } catch (err) {
-        console.log(err)
+      console.log(err);
     }
   }
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
