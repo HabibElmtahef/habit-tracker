@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     const { id, email_addresses } = evt.data;
     const newUser = {
       clerkUserId: id.toString(),
-      emailAddress: email_addresses.toString(),
+      emailAddress: email_addresses[0].email_address,
     };
     console.log(newUser);
     try {
